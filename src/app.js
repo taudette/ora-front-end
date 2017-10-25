@@ -4,18 +4,28 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
-import { fetchData } from './actions'
+import { fetchUser, postMessage } from './actions/user'
+import { fetchMessages } from './actions/chat'
+import { API_MAP, defaultHeader } from './apiMap'
 
 const store = configureStore();
-console.log('test')
     
-const loadData = () => {
-    store.dispatch(fetchData('https://private-e46dd-orachallenge.apiary-mock.com/api/v1/messages?page1=1&page1=1'))
+const newSession = () => {
+    store.dispatch(fetchUser(API_MAP.newSession, {'Content-Type': 'application/vnd.api+json'} ))
+}
+
+const loadMessages = () => {
+    store.dispatch(fetchMessages(API_MAP.loadMessages, {'Content-Type': 'application/vnd.api+json'}))
+}
+
+const newMessage = () => {
+    store.dispatch(postMessage(API_MAP.postMessage), )
 }
 
 class App extends Component {
     render() {
-        loadData()
+        newSession()
+        loadMessages()
         return (
             <Provider store={store}>
                 <div className="app">

@@ -5,7 +5,7 @@ const requestData = () => {
 }
 
 const receiveData = (data) => {
-    console.log(data)
+    console.log('user: ', data)
     return {
         type: 'RECIEVE_DATA',
         data: data
@@ -17,22 +17,21 @@ const recieveError = (data) => {
         type: 'RECIEVE_ERROR',
         data: data
     }
-}
+} 
 
-//todo try arrow function
-export const fetchData = (url, headers) => {
-    console.log(url)
-    return function(dispatch) {
+export const fetchUser = (url, headers) => {
+    return (dispatch) => {
         dispatch(requestData())
         return axios({
+            method: 'post',
             url: url,
             timeout: 20000,
-            heeaders: headers
+            headers: headers
         })
-            .then(function(response){
+            .then((response) => {
                 dispatch(receiveData(response.data))
             })
-            .catch(function(response){
+            .catch((response) => {
                 dispatch(recieveError(response.data))
             })
     }
