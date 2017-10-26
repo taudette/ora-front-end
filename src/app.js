@@ -7,6 +7,7 @@ import './styles/styles.scss';
 import { fetchUser } from './actions/user'
 import { fetchMessages, postMessage } from './actions/chat'
 import { API_MAP, sessionHeaders, chatHeaders, testMessage } from './apiMap'
+import AppContainer from './containers/App'
 
 const store = configureStore();
     
@@ -24,7 +25,7 @@ const newMessage = () => {
 
 class App extends Component {
     render() {
-        newSession()
+       // newSession()
         // loadMessages()
         // newMessage()
 
@@ -32,6 +33,7 @@ class App extends Component {
             <Provider store={store}>
                 <div className="app">
                     <h1>Ora Chat</h1>
+                    <AppContainer />
                 </div>
             </Provider>
         )
