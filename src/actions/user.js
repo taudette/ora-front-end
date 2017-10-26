@@ -4,11 +4,11 @@ const requestData = () => {
     return {type: 'REQUEST_DATA'}
 }
 
-const receiveData = (data) => {
-    console.log('user: ', data)
+const receiveData = ({included} = data) => {
+    const sessionId = included[0].attributes.username
     return {
-        type: 'RECIEVE_DATA',
-        data: data
+        type: 'SET_SESSION_ID',
+        data: sessionId
     }
 }
 
