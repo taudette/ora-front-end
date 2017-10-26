@@ -23,16 +23,29 @@ const newMessage = () => {
     store.dispatch(postMessage(API_MAP.postMessage, chatHeaders))
 }
 
+// load messages when userID is stored in state
+// TODO change to token
+const selectToken = (state) => state.user.userId
+
+let token
+
+const handleToken = () => {
+    token = selectToken(store.getState())
+    if (token != undefined) {
+        //loadMessages()
+        console.log(token)
+    }
+}
+
+let listen = store.subscribe(handleToken)
+
 class App extends Component {
     render() {
-       newSession()
-        // loadMessages()
-        // newMessage()
 
+        newSession()
         return (
             <Provider store={store}>
                 <div className="app">
-                    <h1>Ora Chat</h1>
                     <AppContainer />
                 </div>
             </Provider>

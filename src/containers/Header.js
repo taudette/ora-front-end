@@ -13,6 +13,6 @@ const mapStateToProps = ({user} = state) => {
     return {
        userId: user.userId
     }
-}
+} 
 
 export default connect(mapStateToProps, null)(HeaderContainer)

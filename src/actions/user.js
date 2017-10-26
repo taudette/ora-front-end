@@ -3,7 +3,6 @@ import axios from 'axios'
 const parseUser = (userData) => {
     const {included} = userData
     const sessionId = included[0].attributes.username
-    console.log(sessionId)
     return sessionId
 }
 
