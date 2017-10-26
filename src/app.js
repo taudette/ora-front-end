@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
-import { fetchUser, postMessage } from './actions/user'
-import { fetchMessages } from './actions/chat'
-import { API_MAP, defaultHeaders } from './apiMap'
+import { fetchUser } from './actions/user'
+import { fetchMessages, postMessage } from './actions/chat'
+import { API_MAP, defaultHeaders, testMessage } from './apiMap'
 
 const store = configureStore();
     
@@ -15,17 +15,19 @@ const newSession = () => {
 }
 
 const loadMessages = () => {
-    store.dispatch(fetchMessages(API_MAP.loadMessages, {'Content-Type': 'application/vnd.api+json'}))
+    store.dispatch(fetchMessages(API_MAP.loadMessages, defaultHeaders))
 }
 
 const newMessage = () => {
-    store.dispatch(postMessage(API_MAP.postMessage), )
+    store.dispatch(postMessage(API_MAP.postMessage, defaultHeaders))
 }
 
 class App extends Component {
     render() {
-        newSession()
-        loadMessages()
+        // newSession()
+        // loadMessages()
+        newMessage()
+
         return (
             <Provider store={store}>
                 <div className="app">

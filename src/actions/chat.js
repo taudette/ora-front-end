@@ -1,9 +1,5 @@
 import axios from 'axios'
 
-const requestData = () => {
-    return {type: 'REQUEST_DATA'}
-}
-
 const parseMessage = (message) => {
     const {data, included} = message
     const time = data[0].attributes.created_at
@@ -19,17 +15,8 @@ const receiveData = (data) => {
     }
 }
 
-const recieveError = (data) => {
-    return {
-        type: 'RECIEVE_ERROR',
-        data: data
-    }
-} 
-
 export const fetchMessages = (url, headers) => {
-    console.log(url)
     return (dispatch) => {
-        dispatch(requestData())
         return axios({
             method: 'GET',
             url: url,
@@ -40,7 +27,56 @@ export const fetchMessages = (url, headers) => {
                 dispatch(receiveData(response.data))
             })
             .catch((response) => {
-                dispatch(recieveError(response.data))
+                console.warn(response.data)
             })
     }
 }
+
+const message = {
+  "data": {
+    "type": "messages",
+    "attributes": {
+      "message": "You gotta go with option 2",
+      "userID": "user12344"
+    }
+  }
+}
+
+
+
+
+export const postMessage = (url, headers) => {
+    return (dispatch) => {
+        return axios({
+            method: 'POST',
+            url: url,
+            timeout: 20000,
+            //withCredentials: false,
+            data: message,
+            headers: headers
+        })
+            .then((response) => {
+                console.log(response.data)
+                dispatch(receiveData(response.data))
+            })
+            .catch((response) => {
+                console.warn(response.data)
+            })
+    }
+}
+
+
+// export const postMessage = (url, headers) => {
+//     console.log(headers)
+//     return (dispatch) => {
+//        return axios.post(url, message, headers) 
+//             .then((response) => {
+//                 console.log(response.data)
+//                 dispatch(receiveData(response.data))
+//             })
+//             .catch((response) => {
+//                 console.warn(response.data)
+//             })
+//     }
+// }
+
