@@ -4,11 +4,18 @@ const requestData = () => {
     return {type: 'REQUEST_DATA'}
 }
 
+const parseMessage = (message) => {
+    const {data, included} = message
+    const time = data[0].attributes.created_at
+    const messageText = data[0].attributes.message
+    const userName = included[0].attributes.username
+    return { time, messageText, userName}
+}
+
 const receiveData = (data) => {
-    console.log('messages: ', data)
     return {
-        type: 'RECIEVE_DATA',
-        data: data
+        type: 'LOAD_MESSAGES',
+        data: parseMessage(data)
     }
 }
 
@@ -24,7 +31,7 @@ export const fetchMessages = (url, headers) => {
     return (dispatch) => {
         dispatch(requestData())
         return axios({
-            method: 'post',
+            method: 'GET',
             url: url,
             timeout: 20000,
             headers: headers
