@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const Footer = () => (
+const FooterContainer = () => (
     <footer>
         @2017 All rights reserved
     </footer>
 )
 
-export default Footer
+export default FooterContainer

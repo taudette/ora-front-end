@@ -1,13 +1,11 @@
-const userReducerDefaultState = {
-    sessionId: ''
-}
+const userReducerDefaultState = {}
 
 export default (state = userReducerDefaultState, action) => {
     switch (action.type) {
         case 'SET_SESSION_ID':
             return {
                 ...state,
-                sessionId: action.data
+                userId: action.data
             }
         default:
             return state;

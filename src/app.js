@@ -25,7 +25,7 @@ const newMessage = () => {
 
 class App extends Component {
     render() {
-       // newSession()
+       newSession()
         // loadMessages()
         // newMessage()
 

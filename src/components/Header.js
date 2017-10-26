@@ -1,8 +1,9 @@
 import React from 'react'
 
-const HeaderComponent = () => (
+const HeaderComponent = (props) => (
     <div>
-        Header
+        <h1>{props.userId}</h1>
+        <p>{props.date}</p>
     </div>
 )
 
