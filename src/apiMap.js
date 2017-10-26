@@ -9,4 +9,8 @@ export const API_MAP = {
     postMessage: BASE_API + 'messages'
 }
 
-export const defaultHeader = {'Content-Type': 'application/vnd.api+json'}
+export const defaultHeaders = {
+    'Content-Type': 'application/vnd.api+json',
+    'Accept': 'application/vnd.api+json',
+    'Authorization': 'Bearer BBJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9'
+}

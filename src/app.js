@@ -6,12 +6,12 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import { fetchUser, postMessage } from './actions/user'
 import { fetchMessages } from './actions/chat'
-import { API_MAP, defaultHeader } from './apiMap'
+import { API_MAP, defaultHeaders } from './apiMap'
 
 const store = configureStore();
     
 const newSession = () => {
-    store.dispatch(fetchUser(API_MAP.newSession, {'Content-Type': 'application/vnd.api+json'} ))
+    store.dispatch(fetchUser(API_MAP.newSession, defaultHeaders ))
 }
 
 const loadMessages = () => {
