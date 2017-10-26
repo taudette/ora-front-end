@@ -9,10 +9,14 @@ export const API_MAP = {
     postMessage: BASE_API + 'messages'
 }
 
-export const defaultHeaders = {
-    'Authorization': 'Bearer BBJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9',
+export const chatHeaders = {
+    'Authorization': 'Bearer BBJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ8',
     'content-type': 'application/vnd.api+json',
     'Accept': 'application/vnd.api+json',
-   
+}
+
+export const sessionHeaders = {
+    'content-type': 'application/vnd.api+json',
+    'Accept': 'application/vnd.api+json',
 }
 

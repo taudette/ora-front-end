@@ -42,16 +42,12 @@ const message = {
   }
 }
 
-
-
-
 export const postMessage = (url, headers) => {
     return (dispatch) => {
         return axios({
             method: 'POST',
             url: url,
             timeout: 20000,
-            //withCredentials: false,
             data: message,
             headers: headers
         })
@@ -64,19 +60,4 @@ export const postMessage = (url, headers) => {
             })
     }
 }
-
-
-// export const postMessage = (url, headers) => {
-//     console.log(headers)
-//     return (dispatch) => {
-//        return axios.post(url, message, headers) 
-//             .then((response) => {
-//                 console.log(response.data)
-//                 dispatch(receiveData(response.data))
-//             })
-//             .catch((response) => {
-//                 console.warn(response.data)
-//             })
-//     }
-// }
 

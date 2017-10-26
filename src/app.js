@@ -6,27 +6,27 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import { fetchUser } from './actions/user'
 import { fetchMessages, postMessage } from './actions/chat'
-import { API_MAP, defaultHeaders, testMessage } from './apiMap'
+import { API_MAP, sessionHeaders, chatHeaders, testMessage } from './apiMap'
 
 const store = configureStore();
     
 const newSession = () => {
-    store.dispatch(fetchUser(API_MAP.newSession, defaultHeaders ))
+    store.dispatch(fetchUser(API_MAP.newSession, sessionHeaders ))
 }
 
 const loadMessages = () => {
-    store.dispatch(fetchMessages(API_MAP.loadMessages, defaultHeaders))
+    store.dispatch(fetchMessages(API_MAP.loadMessages, chatHeaders))
 }
 
 const newMessage = () => {
-    store.dispatch(postMessage(API_MAP.postMessage, defaultHeaders))
+    store.dispatch(postMessage(API_MAP.postMessage, chatHeaders))
 }
 
 class App extends Component {
     render() {
-        // newSession()
+        newSession()
         // loadMessages()
-        newMessage()
+        // newMessage()
 
         return (
             <Provider store={store}>
