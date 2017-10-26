@@ -23,25 +23,27 @@ const newMessage = () => {
     store.dispatch(postMessage(API_MAP.postMessage, chatHeaders))
 }
 
-// load messages when userID is stored in state
+// load messages when token is stored in state & re-load in token change
 // TODO change to token
-const selectToken = (state) => state.user.userId
+const select = (state) => {
+    return state.user.userId
+}
 
-let token
+let currentValue
 
-const handleToken = () => {
-    token = selectToken(store.getState())
-    if (token != undefined) {
-        //loadMessages()
-        console.log(token)
+const handleChange = () => {
+    let previousValue = currentValue
+    currentValue = select(store.getState())
+    if (previousValue !== currentValue) {
+        // loadMessages()
+        console.log(currentValue)
     }
 }
 
-let listen = store.subscribe(handleToken)
+let unsubscribe = store.subscribe(handleChange)
 
 class App extends Component {
     render() {
-
         newSession()
         return (
             <Provider store={store}>
