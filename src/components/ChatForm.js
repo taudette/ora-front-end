@@ -1,8 +1,9 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, reset } from 'redux-form'
+import { dispatch } from 'redux'
 
 let ChatForm = props => {
-  const { handleSubmit } = props
+  const { handleSubmit, resetForm } = props
   return (
     <form onSubmit={ handleSubmit }>
       <div>
@@ -13,8 +14,13 @@ let ChatForm = props => {
   )
 }
 
+const afterSubmit = (result, dispatch) => {
+  dispatch(reset('chatForm'));
+}
+
 ChatForm = reduxForm({
-  form: 'contact'
+  form: 'chatForm',
+  onSubmitSuccess: afterSubmit,
 })(ChatForm)
 
 export default ChatForm;

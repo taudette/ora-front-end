@@ -4,7 +4,7 @@ import ChatFormComponent from '../components/ChatForm'
 import { postMessage } from '../actions/chat'
 
 const ChatContainer = (props) => (
-    <ChatFormComponent onSubmit={props.getValues}/>
+    <ChatFormComponent onSubmit={props.getValues} resetForm={props.resetForm}/>
 )
 
 const mapStateToProps = ({user} = state) => {
@@ -13,13 +13,12 @@ const mapStateToProps = ({user} = state) => {
     }
 } 
 
-// const getValues = (values) => {
-//     console.log(values)
-// }
-
 const mapDispatchToProps = (dispatch) => ({
     getValues(values){
         dispatch(postMessage(values))
+    },
+    resetForm(){
+        dispatch(reset('chatForm'))
     }
 })
 
