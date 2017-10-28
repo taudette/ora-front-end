@@ -1,16 +1,13 @@
 const chatReducerDefaultState = []
 
 export default (state = chatReducerDefaultState, action) => {
+    console.log(action)
     switch (action.type) {
         case 'LOAD_MESSAGES':
-            return {
-                ...state,
-                message: {
-                    time: action.data.time,
-                    messageText: action.data.messageText,
-                    userName: action.data.userName
-                }
-            }
+            return [
+                ...state, 
+                action.data
+            ]
         default:
             return state;
     }
