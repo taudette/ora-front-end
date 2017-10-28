@@ -15,6 +15,8 @@ export const saveState = (state) => {
         const serializedState = JSON.stringify(state)
         localStorage.setItem('state', serializedState)
     } catch (err) {
-        
+
     }
 }
+
+export const logOut = () => localStorage.clear()

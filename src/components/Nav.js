@@ -1,8 +1,9 @@
 import React from 'react'
 
-const NavComponent = () => (
+const NavComponent = (props) => (
     <div>
-        Nav
+        Nav 
+        <button onClick={props.logOut}>Logout</button>
     </div>
 )
 
