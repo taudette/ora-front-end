@@ -1,7 +1,6 @@
 const chatReducerDefaultState = []
 
 export default (state = chatReducerDefaultState, action) => {
-    console.log(action)
     switch (action.type) {
         case 'LOAD_MESSAGES':
             return [

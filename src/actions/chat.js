@@ -2,7 +2,7 @@ import axios from 'axios'
 import { API_MAP, chatheaders } from '../apiMap'
 import moment from 'moment'
 
-//initial message load
+//initial messages load
 const parseMessage = (message) => {
     const {data, included} = message
     const time = data[0].attributes.created_at
@@ -52,16 +52,21 @@ const JSONMessage = (message) => {
 }
 
 const stateMessage = (messageText) => {
-    return {
-   
-            "time": currentTime,
-            "messageText": messageText,
-            "userName": 'test'
-   
+    return {   
+        "time": currentTime,
+        "messageText": messageText,
+        "userName": 'test'
     }   
 }
 
 const showMessage = (data) => {
+    return {
+        type: 'LOAD_MESSAGES',
+        data: data
+    }
+}
+
+const showMessage2 = (data) => {
     console.log(data)
     return {
         type: 'LOAD_MESSAGES',
@@ -69,23 +74,36 @@ const showMessage = (data) => {
     }
 }
 
-export const postMessage = (messageText) => {
+const parseResponse = (response) => {
+    const time = response.data.attributes.created_at
+    const messageText = response.data.attributes.message
+    console.log(response.data)
+    const userId = response.included[0].attributes.username
+    console.log(userId)
+    return {   
+        "time": time,
+        "messageText": messageText,
+        "userName": userId
+    }  
+}
+
+export const postMessage = ({message} = message) => {
     return (dispatch) => {
-        dispatch(showMessage(stateMessage(messageText.message)))
-        // return axios({
-        //     method: 'POST',
-        //     url: API_MAP.postMessage,
-        //     timeout: 20000,
-        //     data: JSONMessage(message),
-        //     headers: chatheaders
-        // })
-        //     .then((response) => {
-        //         console.log(response.data)
-        //         dispatch(receiveData(response.data))
-        //     })
-        //     .catch((response) => {
-        //         console.warn(response.data)
-        //     })
+        dispatch(showMessage(stateMessage(message)))
+        return axios({
+            method: 'POST',
+            url: API_MAP.postMessage,
+            timeout: 20000,
+            data: JSONMessage(message),
+            headers: chatheaders
+        })
+            .then((response) => {
+                console.log(parseResponse(response.data))
+                dispatch(showMessage2(parseResponse(response.data)))
+            })
+            .catch((response) => {
+                console.warn(response.data)
+            })
     }
 }
 
