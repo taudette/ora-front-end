@@ -38,7 +38,6 @@ const handleTokenChange = () => {
     currentValue = store.getState().user.userId
     if (previousValue !== currentValue) {
         loadMessages()
-        console.log('load')
     }
 }
 

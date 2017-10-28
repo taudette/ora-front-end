@@ -1,9 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ChatComponent from '../components/chat'
+import ChatFormComponent from '../components/ChatForm'
+import { postMessage } from '../actions/chat'
 
-const ChatContainer = () => (
-    <ChatComponent />
+const ChatContainer = (props) => (
+    <ChatFormComponent onSubmit={props.getValues}/>
 )
 
-export default ChatContainer
+const mapStateToProps = ({user} = state) => {
+    return {
+       userId: user.userId
+    }
+} 
+
+// const getValues = (values) => {
+//     console.log(values)
+// }
+
+const mapDispatchToProps = (dispatch) => ({
+    getValues(values){
+        dispatch(postMessage(values))
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatContainer)

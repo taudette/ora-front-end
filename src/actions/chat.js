@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { API_MAP, chatheaders } from '../apiMap'
 
 const parseMessage = (message) => {
     const {data, included} = message
@@ -42,14 +43,15 @@ const message = {
   }
 }
 
-export const postMessage = (url, headers) => {
+export const postMessage = (message) => {
+    console.log(message)
     return (dispatch) => {
         return axios({
             method: 'POST',
-            url: url,
+            url: API_MAP.postMessage,
             timeout: 20000,
             data: message,
-            headers: headers
+            headers: chatheaders
         })
             .then((response) => {
                 console.log(response.data)

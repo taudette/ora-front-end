@@ -2,7 +2,7 @@ import React from 'react'
 
 const NavComponent = (props) => (
     <div>
-        Nav 
+        <h1>Nav: {props.userId} </h1> 
         <button onClick={props.logOut}>Logout</button>
     </div>
 )
