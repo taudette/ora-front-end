@@ -8,11 +8,18 @@ import { fetchUser } from './actions/user'
 import { fetchMessages, postMessage } from './actions/chat'
 import { API_MAP, sessionHeaders, chatHeaders, testMessage } from './apiMap'
 import AppContainer from './containers/App'
+import { loadState, saveState } from './localStorage'
 
 const store = configureStore();
-    
+
+store.subscribe(() => {
+    saveState(store.getState())
+})
+
 const newSession = () => {
-    store.dispatch(fetchUser(API_MAP.newSession, sessionHeaders ))
+    if(store.getState().user.userId === undefined){
+        store.dispatch(fetchUser(API_MAP.newSession, sessionHeaders))
+    } 
 }
 
 const loadMessages = () => {
@@ -25,22 +32,21 @@ const newMessage = () => {
 
 // load messages when token is stored in state & re-load in token change
 // TODO change to token
-const select = (state) => {
-    return state.user.userId
-}
+const getToken = (state) => state.user.userId
 
 let currentValue
 
 const handleChange = () => {
+    console.log('handle')
     let previousValue = currentValue
-    currentValue = select(store.getState())
+    currentValue = getToken(store.getState())
     if (previousValue !== currentValue) {
         // loadMessages()
         console.log(currentValue)
     }
 }
 
-let unsubscribe = store.subscribe(handleChange)
+store.subscribe(handleChange)
 
 class App extends Component {
     render() {

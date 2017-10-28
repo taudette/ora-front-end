@@ -14,6 +14,7 @@ const receiveData = (data) => {
 }
 
 export const fetchUser = (url, headers) => {
+    console.log('fetch')
     return (dispatch) => {
         return axios({
             method: 'POST',
