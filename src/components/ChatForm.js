@@ -5,11 +5,10 @@ import { dispatch } from 'redux'
 let ChatForm = props => {
   const { handleSubmit, pristine, submitting, resetForm } = props
   return (
-    <form onSubmit={ handleSubmit }>
-      <div>
+    <form className="chatForm" onSubmit={ handleSubmit }>
         <Field name="message" component="input" type="text" />
-      </div>
       <button type="submit" disabled={pristine || submitting}>Submit</button>
+      <button onClick={props.logOut}>Logout</button>
     </form>
   )
 }

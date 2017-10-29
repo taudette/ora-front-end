@@ -1,9 +1,17 @@
 .header {
     background: $orange;
     color: white;
+    padding-left: 10rem;
+    height: 16rem;
 }
 
 .header-user {
-    font-size: 40pt;
+    padding-top: 4rem;
+    font-size: 4rem;
+    margin-bottom: -1.5rem;
+}
+
+.header-date {
+    margin-top: 0;
 }
 

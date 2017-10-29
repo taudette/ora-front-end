@@ -2,13 +2,16 @@ import React from 'react'
 
 const RenderComment = ({ time, messageText, userName }) => {
     return (
-        <div>{time} {messageText} {userName}</div>
+        <div className="message">
+            <p>{userName} {time}</p>
+            <p>{messageText}</p>
+        </div>
     )
 }
 
 const CommentsComponent = (props) => {
     return (
-        <div>
+        <div className="messageContainer">
             { 
             props.messages.length > 0 &&
                 props.messages.map((message, index) => {

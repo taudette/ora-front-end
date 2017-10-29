@@ -7,11 +7,12 @@ import Comments from './Comments'
 
 const AppContainer = () => (
     <div>
-        <Nav />
         <Header />
-        <Comments />
-        <ChatForm />
-        <Footer />
+        <div className="chat">
+            <Comments />
+            <ChatForm />
+            <Footer />
+        </div>
     </div>
 )
 

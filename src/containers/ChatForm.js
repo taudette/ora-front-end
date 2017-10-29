@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ChatFormComponent from '../components/ChatForm'
 import { postMessage } from '../actions/chat'
+import { logOut } from '../utils/localStorage'
 
 const ChatContainer = (props) => {
     setId(props.userId)
     return (
-        <ChatFormComponent onSubmit={props.getValues} userId={props.userId} resetForm={props.resetForm}/>
+        <ChatFormComponent onSubmit={props.getValues} userId={props.userId} logOut={logOut} resetForm={props.resetForm}/>
     )
 }
 

@@ -1,0 +1,21 @@
+.chat {
+    text-align: center;
+}
+
+.message {
+    margin-left: 25%;
+    margin-right: 25%;
+    border-bottom: 1px solid lightgrey;
+    text-align: left;
+}
+
+.chatForm {
+    padding-top:2rem;
+    input {
+        width: 60rem;
+        margin-right: 2rem; 
+    }
+    button {
+        margin-right: 1rem;
+    }
+}
