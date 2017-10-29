@@ -1,14 +1,16 @@
 import React from 'react'
 import Footer from './Footer'
 import Header from './Header'
-import Chat from './Chat'
+import ChatForm from './ChatForm'
 import Nav from './Nav'
+import Comments from './Comments'
 
 const AppContainer = () => (
     <div>
         <Nav />
         <Header />
-        <Chat />
+        <Comments />
+        <ChatForm />
         <Footer />
     </div>
 )

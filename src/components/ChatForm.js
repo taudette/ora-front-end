@@ -3,13 +3,13 @@ import { Field, reduxForm, reset } from 'redux-form'
 import { dispatch } from 'redux'
 
 let ChatForm = props => {
-  const { handleSubmit, resetForm } = props
+  const { handleSubmit, pristine, submitting, resetForm } = props
   return (
     <form onSubmit={ handleSubmit }>
       <div>
         <Field name="message" component="input" type="text" />
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={pristine || submitting}>Submit</button>
     </form>
   )
 }
