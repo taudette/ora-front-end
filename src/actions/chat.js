@@ -67,7 +67,6 @@ const showMessage = (data) => {
 }
 
 const showMessage2 = (data) => {
-    console.log(data)
     return {
         type: 'LOAD_MESSAGES',
         data: data
@@ -77,9 +76,7 @@ const showMessage2 = (data) => {
 const parseResponse = (response) => {
     const time = response.data.attributes.created_at
     const messageText = response.data.attributes.message
-    console.log(response.data)
     const userId = response.included[0].attributes.username
-    console.log(userId)
     return {   
         "time": time,
         "messageText": messageText,
@@ -98,7 +95,6 @@ export const postMessage = ({message} = message) => {
             headers: chatheaders
         })
             .then((response) => {
-                console.log(parseResponse(response.data))
                 dispatch(showMessage2(parseResponse(response.data)))
             })
             .catch((response) => {

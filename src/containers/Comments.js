@@ -3,13 +3,12 @@ import { connect } from 'react-redux'
 import CommentsComponent from '../components/Comments'
 
 const CommentsContainer = (props) => (
-    <CommentsComponent props={props}/>
+    <CommentsComponent messages={props.messages}/>
 )
 
-const mapStateToProps = (state) => {
-    console.log(state)
+const mapStateToProps = ({messages}=state) => {
     return {
-       
+       messages: messages
     }
 } 
 
