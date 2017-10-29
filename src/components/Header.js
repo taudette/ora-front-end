@@ -1,8 +1,8 @@
 import React from 'react'
 
 const HeaderComponent = (props) => (
-    <div>
-        <h1>{props.userId}</h1>
+    <div className="header">
+        <p className="header-user">{props.userId}</p>
         <p>{props.date}</p>
     </div>
 )

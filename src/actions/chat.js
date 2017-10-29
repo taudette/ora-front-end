@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { API_MAP, chatheaders } from '../apiMap'
 import moment from 'moment'
+import { capFirst } from '../utils'
 
 //initial messages load
 const parseMessage = (message) => {
@@ -8,7 +9,7 @@ const parseMessage = (message) => {
     const rawTime = data[0].attributes.created_at
     var time = moment(rawTime).format('MMM D, h:mma')
     const messageText = data[0].attributes.message
-    const userName = included[0].attributes.username
+    const userName = capFirst(included[0].attributes.username)
     return { time, messageText, userName}
 }
 
@@ -74,7 +75,7 @@ const parseResponse = (response) => {
     const rawTime = response.data.attributes.created_at
     var time = moment(rawTime).format('MMM D, h:mma')
     const messageText = response.data.attributes.message
-    const userId = response.included[0].attributes.username
+    const userId = capFirst(response.included[0].attributes.username)
     return {   
         "time": time,
         "messageText": messageText,
@@ -83,7 +84,7 @@ const parseResponse = (response) => {
 }
 
 export const postMessage = (data, user) => {
-    console.log(data, user)
+    user = capFirst(user)
     return (dispatch) => {
         dispatch(showMessage(stateMessage(data, user)))
         return axios({

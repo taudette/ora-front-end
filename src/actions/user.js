@@ -1,8 +1,9 @@
 import axios from 'axios'
+import { capFirst } from '../utils'
 
 const parseUser = (userData) => {
     const {included} = userData
-    const sessionId = included[0].attributes.username
+    const sessionId = capFirst(included[0].attributes.username)
     return sessionId
 }
 
