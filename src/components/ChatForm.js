@@ -8,7 +8,6 @@ let ChatForm = props => {
     <form className="chatForm" onSubmit={ handleSubmit }>
         <Field name="message" component="input" type="text" />
       <button type="submit" disabled={pristine || submitting}>Submit</button>
-      <button onClick={props.logOut}>Logout</button>
     </form>
   )
 }
