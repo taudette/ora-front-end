@@ -5,7 +5,8 @@ import moment from 'moment'
 //initial messages load
 const parseMessage = (message) => {
     const {data, included} = message
-    const time = data[0].attributes.created_at
+    const rawTime = data[0].attributes.created_at
+    var time = moment(rawTime).format('MMM D, h:mma')
     const messageText = data[0].attributes.message
     const userName = included[0].attributes.username
     return { time, messageText, userName}
@@ -36,7 +37,7 @@ export const fetchMessages = (url, headers) => {
 }
 
 // posting new message to chat
-let currentTime = moment().format('MMM D, h:mmpp');
+let currentTime = moment().format('MMM D, h:mma');
 
 const JSONMessage = (message) => {
     return {
@@ -55,7 +56,7 @@ const stateMessage = (messageText) => {
     return {   
         "time": currentTime,
         "messageText": messageText,
-        "userName": 'test'
+        "userName": 'username here'
     }   
 }
 
