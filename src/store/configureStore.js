@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import userReducer from '../reducers/user'
-import chatReducer from '../reducers/chat'
+import messagesReducer from '../reducers/messages'
 import { loadState } from '../utils/localStorage'
 import { reducer as formReducer } from 'redux-form'
 
@@ -12,7 +12,7 @@ export default () => {
   const store = createStore(
     combineReducers({
         user: userReducer,
-        chat: chatReducer,
+        messages: messagesReducer,
         form: formReducer
     }),
     persistedState,
