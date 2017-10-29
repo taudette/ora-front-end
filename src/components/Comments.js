@@ -9,9 +9,12 @@ const RenderComment = ({ time, messageText, userName }) => {
 const CommentsComponent = (props) => {
     return (
         <div>
-        { props.messages.map((message, index) => {
-            return <RenderComment key={index} {...message} />
-          }) }
+            { 
+            props.messages.length > 0 &&
+                props.messages.map((message, index) => {
+                    return <RenderComment key={index} {...message} />
+                }) 
+            }
         </div>
     )
 }

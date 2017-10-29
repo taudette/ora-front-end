@@ -19,4 +19,7 @@ export const saveState = (state) => {
     }
 }
 
-export const logOut = () => localStorage.clear()
+export const logOut = () => {
+    localStorage.clear(), 
+    window.location.reload()
+}

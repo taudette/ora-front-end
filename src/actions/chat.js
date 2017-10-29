@@ -39,7 +39,8 @@ export const fetchMessages = (url, headers) => {
 // posting new message to chat
 let currentTime = moment().format('MMM D, h:mma');
 
-const JSONMessage = (data, user) => {
+//data being sent to api
+const parseBody = (data, user) => {
     return {
         "data": {
             "type": "messages",
@@ -52,6 +53,7 @@ const JSONMessage = (data, user) => {
     }    
 }
 
+//data being sent to state
 const stateMessage = (data, user) => {
     return {   
         "time": currentTime,
@@ -67,6 +69,7 @@ const showMessage = (data) => {
     }
 }
 
+//parse data recieved from api and set to state
 const parseResponse = (response) => {
     const rawTime = response.data.attributes.created_at
     var time = moment(rawTime).format('MMM D, h:mma')
@@ -87,7 +90,7 @@ export const postMessage = (data, user) => {
             method: 'POST',
             url: API_MAP.postMessage,
             timeout: 20000,
-            data: JSONMessage(data, user),
+            data: parseBody(data, user),
             headers: chatheaders
         })
             .then((response) => {

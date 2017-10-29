@@ -32,10 +32,12 @@ const newMessage = () => {
 
 // load messages when token is stored in state & re-load on token change
 // currently using userId b/c cannot grab token from header
-let currentValue
+let currentValue = store.getState().user.userId
 const handleTokenChange = () => {
+    console.log(store.getState().user)
     let previousValue = currentValue
     currentValue = store.getState().user.userId
+    console.log(previousValue, currentValue)
     if (previousValue !== currentValue) {
         loadMessages()
     }
