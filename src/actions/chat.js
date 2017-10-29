@@ -39,24 +39,24 @@ export const fetchMessages = (url, headers) => {
 // posting new message to chat
 let currentTime = moment().format('MMM D, h:mma');
 
-const JSONMessage = (message) => {
+const JSONMessage = (data, user) => {
     return {
         "data": {
             "type": "messages",
             "attributes": {
-                "message": message,
-                "userID": 'userId',
+                "message": data.message,
+                "userID": user,
                 "time" : currentTime
             }
         }
     }    
 }
 
-const stateMessage = (messageText) => {
+const stateMessage = (data, user) => {
     return {   
         "time": currentTime,
-        "messageText": messageText,
-        "userName": 'username here'
+        "messageText": data.message,
+        "userName": user
     }   
 }
 
@@ -67,15 +67,9 @@ const showMessage = (data) => {
     }
 }
 
-const showMessage2 = (data) => {
-    return {
-        type: 'LOAD_MESSAGES',
-        data: data
-    }
-}
-
 const parseResponse = (response) => {
-    const time = response.data.attributes.created_at
+    const rawTime = response.data.attributes.created_at
+    var time = moment(rawTime).format('MMM D, h:mma')
     const messageText = response.data.attributes.message
     const userId = response.included[0].attributes.username
     return {   
@@ -85,18 +79,19 @@ const parseResponse = (response) => {
     }  
 }
 
-export const postMessage = ({message} = message) => {
+export const postMessage = (data, user) => {
+    console.log(data, user)
     return (dispatch) => {
-        dispatch(showMessage(stateMessage(message)))
+        dispatch(showMessage(stateMessage(data, user)))
         return axios({
             method: 'POST',
             url: API_MAP.postMessage,
             timeout: 20000,
-            data: JSONMessage(message),
+            data: JSONMessage(data, user),
             headers: chatheaders
         })
             .then((response) => {
-                dispatch(showMessage2(parseResponse(response.data)))
+                dispatch(showMessage(parseResponse(response.data)))
             })
             .catch((response) => {
                 console.warn(response.data)
