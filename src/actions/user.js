@@ -1,6 +1,9 @@
 import axios from 'axios'
 import { capFirst } from '../utils'
 
+// using the user ID instead of JWT token from response header:
+// I was unable to get the token from the authorization header:
+// error: Refused to get unsafe header "Authorization"
 const parseUser = (userData) => {
     const {included} = userData
     const sessionId = capFirst(included[0].attributes.username)

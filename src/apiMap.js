@@ -10,7 +10,7 @@ export const API_MAP = {
 
 export const chatHeaders = {
     // would usually have the authorization header stored in state for each user
-    // I was unable to get the value off of the header which is why I have it hard coded
+    // I was unable to get the value off of the header which is why I have it hard coded 
     'Authorization': 'Bearer BBJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9',
     'content-type': 'application/vnd.api+json',
     'Accept': 'application/vnd.api+json',
