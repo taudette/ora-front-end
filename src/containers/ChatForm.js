@@ -24,7 +24,6 @@ const setId = (userId) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getValues(values){
-            console.log(values, user)
             dispatch(postMessage(values, user))
         },
         resetForm(){
