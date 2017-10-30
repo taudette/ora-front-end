@@ -9,6 +9,7 @@ import { fetchMessages, postMessage } from './actions/chat'
 import { API_MAP, sessionHeaders, chatHeaders, testMessage } from './apiMap'
 import AppContainer from './containers/App'
 import { loadState, saveState } from './utils/localStorage'
+import Footer from './containers/Footer'
 
 const store = configureStore();
 
@@ -51,7 +52,8 @@ class App extends Component {
             <Provider store={store}>
                 <div className="app">
                     <AppContainer />
-                </div>
+                    <Footer />
+                </div>    
             </Provider>
         )
     }

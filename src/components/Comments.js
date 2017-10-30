@@ -3,7 +3,10 @@ import React from 'react'
 const RenderComment = ({ time, messageText, userName }) => {
     return (
         <div className="message">
-            <p>{userName} {time}</p>
+            <p>
+                {userName}{'\u00A0'}
+                <span className="messageTime">{time}</span>
+            </p>
             <p>{messageText}</p>
         </div>
     )
